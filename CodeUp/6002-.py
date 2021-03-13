@@ -117,4 +117,38 @@ def code_6082():
         print(i, end=' ')
 
 
-code_6082()
+# from itertools import product
+# def code_6083():
+#     rgb = input().split()
+#
+#     colors = [[]]
+#     for i in range(len(rgb)):
+#         colors[i] = [j for j in range(rgb[i])]
+#
+#     print(colors)
+
+def code_6086():
+    n = int(input())
+
+    total = 0
+    idx = 1
+    while total < n:
+        total += idx
+        idx += 1
+
+    print(total)
+
+
+def code_6087():
+    n = int(input())
+
+    count = 0
+    while count < n:
+        count += 1
+        if count % 3 == 0:
+            continue
+
+        print(count, end=" ")
+
+
+code_6087()
