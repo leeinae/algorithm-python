@@ -1,5 +1,4 @@
 from itertools import combinations
-import sys
 
 
 def check(learn_word):
@@ -18,8 +17,8 @@ def check(learn_word):
 
 
 n, k = map(int, input().split())
-words = []
-word_set = {'a', 'n', 't', 'i', 'c'}
+words = []  # 전체 단어
+word_set = {'a', 'n', 't', 'i', 'c'}  # 학습한 단어 set
 answer = 0
 
 for i in range(n):
@@ -27,15 +26,13 @@ for i in range(n):
     words.append(temp_word)
     word_set.update(temp_word)
 
-if k < 5:
-    print(0)
-    sys.exit()
-elif k == 26:
-    print(n)
-    sys.exit()
+if k < 5 or k == 26:
+    print(0 if k < 5 else n)
+    exit(0)
 
 comb = combinations(word_set, k)
 for i in comb:
-    answer = max(check(i), answer)
+    if 'a' in i and 'n' in i and 't' in i and 'i' in i and 'c' in i:
+        answer = max(check(i), answer)
 
 print(answer)
