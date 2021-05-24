@@ -13,13 +13,15 @@ def cut_tree(h):
     return result
 
 
+answer = 0
 while start <= end:
     middle = (start + end) // 2  # 높이
     result = cut_tree(middle)
 
     if result >= m:
         start = middle + 1
+        answer = middle
     else:
         end = middle - 1
 
-print(end)
+print(answer)

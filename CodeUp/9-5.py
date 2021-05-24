@@ -18,7 +18,8 @@ def dijkstra(start):
     while q:
         dist, idx = heapq.heappop(q)
 
-        if dist > distance[idx]: continue
+        if dist > distance[idx]:
+            continue
 
         for i in graph[idx]:  # i: (인덱스, 걸리는 시간)
             if i[1] + dist < distance[i[0]]:
@@ -31,7 +32,8 @@ dijkstra(c)
 count = 0
 time = 0
 for i in distance:
-    if i >= INF: continue
+    if i >= INF:
+        continue
 
     count += 1
     time = max(time, i)
