@@ -1,19 +1,27 @@
 def solution(gems):
     answer = []
     type_set = set(gems)
+    type_dict = {gems[0]: 1}
 
     left, right = 0, 0
-    min_value = len(gems)
-    while right < len(gems):
-        temp = set([gems[g] for g in range(left, right + 1)])
+    while left < len(gems) and right < len(gems):
+        if len(type_dict) == len(type_set):
+            answer.append([left + 1, right + 1])
 
-        if len(temp) == len(type_set):
-            if min_value >= right - left:
-                answer.append([left + 1, right + 1])
-                min_value = min(right - left, min_value)
+            if type_dict[gems[left]] == 1:
+                del type_dict[gems[left]]
+            else:
+                type_dict[gems[left]] -= 1
+
             left += 1
         else:
             right += 1
+            if right == len(gems): break
+
+            if gems[right] in type_dict.keys():
+                type_dict[gems[right]] += 1
+            else:
+                type_dict[gems[right]] = 1
 
     answer.sort(key=lambda x: x[1] - x[0])
     return answer[0]
