@@ -1,5 +1,5 @@
 def calc_min_move_time(n, times):
-    if n <= 2:
+    if n < 3:
         return times[n - 1]
     elif n == 3:
         return sum(times[:4])
@@ -9,23 +9,27 @@ def calc_min_move_time(n, times):
 
 
 def main():
-    f = open('sample_input.txt', 'r')
-    test_case = int(f.readline())
-    input_lines = f.readlines()
+    test_case = int(input())
 
-    case_num = 1
-    while case_num <= test_case:
-        args = 2 * (case_num - 1)
-        n = int(input_lines[args])
-        times = list(map(int, input_lines[args + 1].split()))
+    for case in range(test_case):
+        n = int(input())
+        times = list(map(int, input().split()))
         times.sort()
 
         time = calc_min_move_time(n, times)
-        print(f'#{case_num} {time}')
-
-        case_num += 1
-
-    f.close()
+        print(f'#{case + 1} {time}')
 
 
 main()
+
+'''
+4
+1
+5
+4
+1 2 8 9
+3
+1 3 5
+4
+1 2 5 10
+'''
