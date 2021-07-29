@@ -1,10 +1,10 @@
-def solution(participant, completion):
-    for c in completion:
-        if c in participant:
-            participant.remove(c)
+from collections import Counter
 
-    print(participant[0])
-    return participant[0]
+
+def solution(participant, completion):
+    answer = Counter(participant) - Counter(completion)
+
+    return list(answer.keys())[0]
 
 
 solution(["mislav", "stanko", "mislav", "ana"], ["stanko", "ana", "mislav"])
