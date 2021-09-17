@@ -1,29 +1,25 @@
-from itertools import permutations
-
-
-def search(total, curr, prev, count, visited):
+def search(selected, visited):
     global answer, n, nums
-    total = total + abs(curr - prev) if count != 1 else 0
-    if count == n:
+    if len(selected) == n:
+        total = 0
+        for i in range(1, len(selected)):
+            total += abs(selected[i] - selected[i - 1])
         answer = max(answer, total)
         return
 
     for i in range(len(nums)):
         if not visited[i]:
             visited[i] = True
-            search(total, nums[i], curr, count + 1, visited)
+            selected.append(nums[i])
+            search(selected, visited)
             visited[i] = False
+            selected.pop()
 
 
 n = int(input())
 nums = list(map(int, input().split()))
-# visited = [False] * len(nums)
+visited = [False] * len(nums)
 answer = 0
-# search(0, 0, 0, 0, visited)
+search([], visited)
 
-for p in permutations(nums, n):
-    total = 0
-    for i in range(1, len(p)):
-        total += abs(p[i] - p[i - 1])
-    answer = max(answer, total)
 print(answer)
